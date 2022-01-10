@@ -7,6 +7,9 @@ import java.io.*;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Consider using {@link com.duncpro.bukkit.persistence.json.JsonSerializablePersistentDataType} instead of this class.
+ */
 public class JavaSerializablePersistentDataType<Z> implements PersistentDataType<byte[], Z> {
     private final Class<Z> complexType;
 
@@ -31,7 +34,7 @@ public class JavaSerializablePersistentDataType<Z> implements PersistentDataType
         try (final var oos = new ObjectOutputStream(bos)) {
             oos.writeObject(z);
         } catch (IOException e) {
-            throw new AssertionError(e);
+            throw new PersistentDataContainerException(e);
         }
 
         return bos.toByteArray();
@@ -44,10 +47,8 @@ public class JavaSerializablePersistentDataType<Z> implements PersistentDataType
 
         try (final var ois = new ObjectInputStream(bis)) {
             return (Z) ois.readObject();
-        } catch (ClassNotFoundException e) {
-            throw new IllegalStateException(e);
-        } catch (IOException e) {
-            throw new AssertionError(e);
+        } catch (IOException | ClassNotFoundException e) {
+            throw new PersistentDataContainerException(e);
         }
     }
 }

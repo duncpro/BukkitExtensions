@@ -4,14 +4,19 @@ import com.duncpro.bukkit.command.CommandHandlerRegistrar;
 import com.duncpro.bukkit.command.CommandSupportModule;
 import com.duncpro.bukkit.concurrency.BukkitThreadPool;
 import com.duncpro.bukkit.concurrency.NextTickSync;
+import com.duncpro.bukkit.persistence.json.BukkitTypesJsonModule;
+import com.duncpro.bukkit.persistence.json.PersistentChunkMapFactory;
 import com.duncpro.bukkit.region.lock.PluginExtentLockFactory;
 import com.duncpro.bukkit.log.PluginLoggerGuiceTypeListener;
 import com.duncpro.bukkit.metadata.TemporaryMetadataService;
 import com.duncpro.bukkit.misc.ThrowingRunnable;
 import com.duncpro.bukkit.persistence.Local;
-import com.duncpro.bukkit.persistence.PersistentChunkMapFactory;
 import com.duncpro.bukkit.persistence.RelationalDatabaseService;
 import com.duncpro.bukkit.persistence.RelationalDatabaseServiceImpl;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.module.guice.ObjectMapperModule;
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.matcher.Matchers;
@@ -32,10 +37,12 @@ class BukkitPluginSupportModule<P extends IocJavaPlugin> extends AbstractModule 
     final Stack<ThrowingRunnable> preDestroyHooks = new Stack<>();
     private final P plugin;
     private final Class<P> pluginJavaType;
+    private final ObjectMapperModule jacksonModule;
 
-    BukkitPluginSupportModule(P plugin, Class<P> pluginJavaType) {
+    BukkitPluginSupportModule(P plugin, Class<P> pluginJavaType, ObjectMapperModule jacksonModule) {
         this.plugin = requireNonNull(plugin);
         this.pluginJavaType = requireNonNull(pluginJavaType);
+        this.jacksonModule = requireNonNull(jacksonModule);
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
@@ -76,6 +83,12 @@ class BukkitPluginSupportModule<P extends IocJavaPlugin> extends AbstractModule 
         install(new CommandSupportModule());
 
         bindPluginDependencies();
+
+        install(jacksonModule
+                .registerModule(new BukkitTypesJsonModule())
+                .registerModule(new ParameterNamesModule())
+                .registerModule(new Jdk8Module())
+                .registerModule(new JavaTimeModule()));
     }
 
     @Provides

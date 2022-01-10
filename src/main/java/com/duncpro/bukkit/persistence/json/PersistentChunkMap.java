@@ -1,9 +1,12 @@
-package com.duncpro.bukkit.persistence;
+package com.duncpro.bukkit.persistence.json;
 
 import com.duncpro.bukkit.geometry.HorizontalPosition;
+import com.duncpro.bukkit.persistence.NamespacedKeys;
+import com.duncpro.bukkit.persistence.PersistentDataContainerException;
 import com.duncpro.bukkit.region.Chunks;
 import com.duncpro.bukkit.geometry.Vectors;
 import com.duncpro.bukkit.misc.collect.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.auto.factory.AutoFactory;
 import com.google.auto.factory.Provided;
 import org.bukkit.Chunk;
@@ -12,7 +15,6 @@ import org.bukkit.block.Block;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
-import java.io.Serializable;
 import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -37,20 +39,25 @@ import static java.util.Objects.requireNonNull;
  *
  * This map is implemented using the Bukkit Persistence API, therefore the speed of the map is dependent on the
  * implementation of the Bukkit API which the server is running.
+ *
+ * Elements must be serializable via Jackson.
  */
 @AutoFactory
-public class PersistentChunkMap<T extends Serializable> implements Map<Vector, T> {
+public class PersistentChunkMap<T> implements Map<Vector, T> {
     private final UUID worldId;
     private final HorizontalPosition chunkPos;
     private final Plugin owningPlugin;
     private final Class<T> elementType;
     private final String subNamespace;
+    private final ObjectMapper jackson;
 
     PersistentChunkMap(Plugin owningPlugin,
+                       ObjectMapper jackson,
                        Class<T> elementType,
                        Chunk chunk,
                        String typeQualifier) {
-        this.owningPlugin = owningPlugin;
+        this.owningPlugin = requireNonNull(owningPlugin);
+        this.jackson = requireNonNull(jackson);
         this.elementType = requireNonNull(elementType);
         this.worldId = chunk.getWorld().getUID();
         this.chunkPos = Chunks.chunkId(chunk);
@@ -60,9 +67,10 @@ public class PersistentChunkMap<T extends Serializable> implements Map<Vector, T
     }
 
     PersistentChunkMap(@Provided Plugin owningPlugin,
+                       @Provided ObjectMapper jackson,
                        Class<T> elementType,
                        Chunk chunk) {
-        this(owningPlugin, elementType, chunk, "");
+        this(owningPlugin, jackson, elementType, chunk, "");
     }
 
 
@@ -115,7 +123,7 @@ public class PersistentChunkMap<T extends Serializable> implements Map<Vector, T
         if (world == null) throw new IllegalStateException();
         final var chunk = world.getChunkAt(chunkPos.getBlockX(), chunkPos.getBlockZ());
         return chunk.getPersistentDataContainer()
-                .has(NamespacedKeys.get(owningPlugin, persistenceKey(vector)), new JavaSerializablePersistentDataType<>(elementType));
+                .has(NamespacedKeys.get(owningPlugin, persistenceKey(vector)), new JsonSerializablePersistentDataType<>(elementType, jackson));
     }
 
     @Override
@@ -139,8 +147,15 @@ public class PersistentChunkMap<T extends Serializable> implements Map<Vector, T
         if (world == null) throw new IllegalStateException();
         final var chunk = world.getChunkAt(chunkPos.getBlockX(), chunkPos.getBlockZ());
 
-        return chunk.getPersistentDataContainer()
-                .get(NamespacedKeys.get(owningPlugin, persistenceKey(vector)), new JavaSerializablePersistentDataType<>(elementType));
+        try {
+            return chunk.getPersistentDataContainer()
+                    .get(NamespacedKeys.get(owningPlugin, persistenceKey(vector)), new JsonSerializablePersistentDataType<>(elementType, jackson));
+        } catch (PersistentDataContainerException e) {
+            owningPlugin.getLogger().log(Level.WARNING, "Unable to read persistent data associated with block: " + vector
+                + " in chunk: " + chunkPos + ". Deleting it from the world file to prevent corruption", e);
+            delete(vector);
+            return null;
+        }
     }
 
     private void set(Vector key, T value) {
@@ -150,7 +165,7 @@ public class PersistentChunkMap<T extends Serializable> implements Map<Vector, T
         final var chunk = world.getChunkAt(chunkPos.getBlockX(), chunkPos.getBlockZ());
 
         chunk.getPersistentDataContainer().set(NamespacedKeys.get(owningPlugin, persistenceKey(key)),
-                new JavaSerializablePersistentDataType<>(elementType), value);
+                new JsonSerializablePersistentDataType<>(elementType, jackson), value);
 
         owningPlugin.getLogger().log(Level.FINE, "Associated instance of " + value.getClass() + " with block at: " +
                 blockAt(chunk, key).getLocation() + ": " + value.toString());

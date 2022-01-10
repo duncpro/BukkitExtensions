@@ -8,6 +8,7 @@ import com.duncpro.bukkit.log.AsyncFileHandler;
 import com.duncpro.bukkit.region.BulkEditService;
 import com.duncpro.bukkit.region.selection.RegionSelectionService;
 import com.duncpro.bukkit.structure.StructurePersistenceService;
+import com.fasterxml.jackson.module.guice.ObjectMapperModule;
 import com.google.inject.Guice;
 import com.google.inject.Key;
 import com.google.inject.Module;
@@ -16,6 +17,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
@@ -63,7 +65,7 @@ public abstract class IocJavaPlugin extends JavaPlugin {
         getLogger().addHandler(asyncLogger);
         getLogger().setLevel(Level.ALL);
 
-        bukkitPluginSupportModule = new BukkitPluginSupportModule<>(this, (Class) this.getClass());
+        bukkitPluginSupportModule = new BukkitPluginSupportModule<>(this, (Class) this.getClass(), createObjectMapperModule());
         final var pluginModule = createIocModule();
         final var modules = Modules.combine(bukkitPluginSupportModule, pluginModule, getThirdPartyServiceModule());
         Guice.createInjector(modules).injectMembers(this);
@@ -106,5 +108,11 @@ public abstract class IocJavaPlugin extends JavaPlugin {
      * Services which are not declared here will not be made available for injection. To inject a Bukkit service
      * create a field of type {@link BukkitServiceProvider<>} and annotate it with {@link javax.inject.Inject}.
      */
-    protected abstract Set<Class<?>> getThirdPartyServiceDependencies();
+    protected Set<Class<?>> getThirdPartyServiceDependencies() {
+        return Collections.emptySet();
+    }
+
+    protected ObjectMapperModule createObjectMapperModule() {
+        return new ObjectMapperModule();
+    }
 }

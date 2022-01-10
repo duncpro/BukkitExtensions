@@ -14,7 +14,7 @@ import java.util.function.BiFunction;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public record VoxelRectangle(int length, int height) implements Serializable {
+public record VoxelRectangle(int length, int height) {
 
     public VoxelRectangle add(int length, int height) {
         return new VoxelRectangle(this.length + length, this.height + height);

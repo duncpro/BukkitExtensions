@@ -33,6 +33,7 @@ and annotations.
 - Guice for Dependency Injection
 - H2 for Storing Relational Data
 - Apache Commons CLI
+- Jackson for JSON Serialization
 
 ## Usage
 Should be installed on the server as a companion plugin and not shaded into consumer's jar file.
@@ -53,3 +54,4 @@ of plain `@Inject`.
 - `TemporaryMetadataService`
 - `@BukkitThreadPool Executor`
 - `@NextTickSync Executor`
+- `ObjectMapper`

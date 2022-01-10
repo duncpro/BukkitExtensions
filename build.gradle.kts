@@ -18,7 +18,10 @@ val embeddedApi: Configuration by configurations.creating {
 }
 
 dependencies {
-    embeddedApi("com.fasterxml.jackson.module:jackson-module-guice:2.13.1")
+    embedded("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.1")
+    embedded("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.13.1")
+    embedded("com.fasterxml.jackson.module:jackson-module-parameter-names:2.13.1")
+    embedded("com.fasterxml.jackson.module:jackson-module-guice:2.13.1")
     embeddedApi("com.fasterxml.jackson.core:jackson-databind:2.13.1")
     embedded("commons-cli:commons-cli:1.5.0")
     embedded("com.h2database:h2:2.0.204")
@@ -39,6 +42,10 @@ tasks.jar {
     embedded.forEach { file -> from(zipTree(file)) }
     embeddedApi.forEach { file -> from(zipTree(file)) }
     duplicatesStrategy = DuplicatesStrategy.WARN
+}
+
+tasks.compileJava.configure {
+    this.options.compilerArgs.add("-parameters")
 }
 
 configurations.create("pluginJar")
