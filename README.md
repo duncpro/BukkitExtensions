@@ -34,3 +34,6 @@ world.
 
 ## Usage
 Should be installed on the server as a companion plugin and not shaded into consumer's jar file.
+
+You may also need third-party plugins to provide service implementations which do not ship with
+BukkitExtensions. Consider using [Default Integrations for BukkitExtensions](https://github.com/duncpro/Default-Integrations-for-BukkitExtensions).
