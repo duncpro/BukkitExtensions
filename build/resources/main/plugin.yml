@@ -1,0 +1,10 @@
+name: BukkitExtensions
+main: com.duncpro.bukkit.BukkitExtensionsPlugin
+version: 1.0
+api-version: 1.18
+load: STARTUP
+commands:
+  listen:
+    description: "Redirects log messages from a plugin to the current user's chat box."
+  /trim:
+    description: "Trims all airspace around the player's current cuboid selection."

@@ -1,0 +1,10 @@
+# The following value describes the maximum number of positional observations per player which will be
+# held at any one time by the "Heading Service". This service allows plugins to access a player's navigational
+# heading. Increasing this value will also increase memory usage but will make it possible for plugins
+# to more accurately measure a player's heading. This value is measured in time.
+# See https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html for a list of available units
+# and instructions on describing a unit using a string. By default this value is configured to two minutes.
+# Therefore two minutes worth of positional history will be available to plugins.
+heading-history-length: PT2M
+
+
