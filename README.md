@@ -1,5 +1,6 @@
 # BukkitExtensions
 A toolkit for easing serverside Minecraft development on Bukkit.
+
 ## Features
 This is not an exhaustive list of features.
 - **Player Heading Service** which tracks player location over time to
@@ -24,8 +25,12 @@ restart boundaries.
 - **Extent Locking Service** for temporarily preventing construction and destruction over regions of the
 world.
 - **Temporary Metadata Service** for associating expiring metadata with Blocks, Entities, etc.  
+- `//trim` for trimming selections made with plugins such as `WorldEdit`.
   
 ## Includes Libraries
 - Guice for Dependency Injection
 - H2 for Storing Relational Data
 - Apache Commons CLI
+
+## Usage
+Should be installed on the server as a companion plugin and not shaded into consumer's jar file.
