@@ -26,6 +26,8 @@ restart boundaries.
 world.
 - **Temporary Metadata Service** for associating expiring metadata with Blocks, Entities, etc.  
 - `//trim` for trimming selections made with plugins such as `WorldEdit`.
+- Auto registration for Listeners, Command Handlers, and Scheduler Tasks using Guice
+and annotations.
   
 ## Includes Libraries
 - Guice for Dependency Injection
@@ -37,3 +39,17 @@ Should be installed on the server as a companion plugin and not shaded into cons
 
 You may also need third-party plugins to provide service implementations which do not ship with
 BukkitExtensions. Consider using [Default Integrations for BukkitExtensions](https://github.com/duncpro/Default-Integrations-for-BukkitExtensions).
+
+## Default Injections
+This is not an exhaustive list.
+- `Server`
+- `JavaPlugin`, `Plugin`, `<Your Main Class>`
+- `YamlConfiguration`
+- `BukkitServiceProvider<AnyServiceHere>`
+- `Logger` using custom injection annotation `@InjectLogger` instead
+of plain `@Inject`.
+- `PluginExtentLockFactory`
+- `PersistentChunkMapFactory`
+- `TemporaryMetadataService`
+- `@BukkitThreadPool Executor`
+- `@NextTickSync Executor`
