@@ -16,11 +16,9 @@ import java.util.logging.Logger;
 import static java.util.Objects.requireNonNull;
 
 class PreDestroySupport implements TypeListener {
-    private final Stack<Runnable> preDestroyHooks;
     private final Plugin plugin;
 
-    PreDestroySupport(Stack<Runnable> preDestroyHooks, Plugin plugin) {
-        this.preDestroyHooks = requireNonNull(preDestroyHooks);
+    PreDestroySupport(Plugin plugin) {
         this.plugin = requireNonNull(plugin);
     }
 
@@ -35,10 +33,11 @@ class PreDestroySupport implements TypeListener {
 
     @Override
     public <I> void hear(TypeLiteral<I> type, TypeEncounter<I> encounter) {
+        final var lifecycleHooks = encounter.getProvider(LifecycleHooks.class);
         for (final var method : type.getRawType().getMethods()) {
             if (!method.isAnnotationPresent(PreDestroy.class)) return;
             encounter.register((InjectionListener<I>) injectee ->
-                    preDestroyHooks.add(() -> invokeHandler(method, injectee)));
+                    lifecycleHooks.get().registerPreDestroyHook(() -> invokeHandler(method, injectee)));
         }
     }
 }

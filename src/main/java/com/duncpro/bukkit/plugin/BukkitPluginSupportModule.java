@@ -20,7 +20,6 @@ import java.util.concurrent.Executor;
 import static java.util.Objects.requireNonNull;
 
 public class BukkitPluginSupportModule<P extends JavaPlugin> extends AbstractModule {
-    final Stack<Runnable> preDestroyHooks = new Stack<>();
     private final P plugin;
 
     public BukkitPluginSupportModule(P plugin) {
@@ -39,7 +38,7 @@ public class BukkitPluginSupportModule<P extends JavaPlugin> extends AbstractMod
 
         bind(Server.class).toInstance(plugin.getServer());
 
-        bindListener(Matchers.any(), new PreDestroySupport(preDestroyHooks, plugin));
+        bindListener(Matchers.any(), new PreDestroySupport(plugin));
         bindListener(Matchers.any(), new PostConstructSupport(plugin));
         bindListener(Matchers.any(), new BukkitListenerRegistrar(plugin));
         bindListener(Matchers.any(), new MinecraftGameLoopTaskAutoRegistrar(plugin));
@@ -49,14 +48,8 @@ public class BukkitPluginSupportModule<P extends JavaPlugin> extends AbstractMod
         bindListener(Matchers.any(), new BukkitServiceCustomInjection());
         bind(PluginConfigService.class).asEagerSingleton();
         install(new CommandSupportModule());
+        bind(LifecycleHooks.class).asEagerSingleton();
     }
-
-    public void runPreDestroyHooks() {
-        while (!preDestroyHooks.empty()) {
-            preDestroyHooks.pop().run();
-        }
-    }
-
 
     @Provides
     @BukkitThreadPool
