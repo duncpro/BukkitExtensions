@@ -6,8 +6,6 @@ import org.bukkit.util.Vector;
 import java.time.Duration;
 import java.time.temporal.TemporalUnit;
 
-import static com.duncpro.bukkit.geometry.Vectors.quotient;
-
 public class MinecraftVelocity {
     /**
      * Calculates the velocity required to move an object the given {@code distance} (in blocks)
@@ -17,6 +15,7 @@ public class MinecraftVelocity {
      * once each tick, in order for the object to reach the destination.
      */
     public static Vector of(Vector distance, TemporalUnit time) {
-        return quotient(distance, time.getDuration().toSeconds() * 20);
+        final double tps = time.getDuration().toSeconds() * 20;
+        return distance.divide(new Vector(tps, tps, tps));
     }
 }

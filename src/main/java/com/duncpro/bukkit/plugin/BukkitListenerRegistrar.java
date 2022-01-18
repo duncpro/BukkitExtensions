@@ -1,6 +1,5 @@
 package com.duncpro.bukkit.plugin;
 
-import com.duncpro.bukkit.misc.ThrowingRunnable;
 import com.google.inject.Scopes;
 import com.google.inject.spi.ProvisionListener;
 import org.bukkit.event.Listener;

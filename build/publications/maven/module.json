@@ -1,0 +1,83 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.duncpro",
+    "module": "BukkitExtensions",
+    "version": "1.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "BukkitExtensions-1.0.jar",
+          "url": "BukkitExtensions-1.0.jar",
+          "size": 55447,
+          "sha512": "95244b22459bfddf4ef61f7f7889836151451d8bd837e68271575e033c066588cb05d075b241a0baf5f0cfbf66ba818cbe00243f9173d101e931eae7d106ce84",
+          "sha256": "f9866fbe956ccc043e0060c3686f0edbe60529178e8a4beef176d59757aa6624",
+          "sha1": "bdbb93125472f4c884a48535428252c2fb3465ca",
+          "md5": "94e3ee42bb5c40ae06edffed8c3f19bb"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "commons-cli",
+          "module": "commons-cli",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "org.spigotmc",
+          "module": "spigot-api",
+          "version": {
+            "requires": "1.18.1-R0.1-SNAPSHOT"
+          }
+        },
+        {
+          "group": "com.google.inject",
+          "module": "guice",
+          "version": {
+            "requires": "5.0.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "BukkitExtensions-1.0.jar",
+          "url": "BukkitExtensions-1.0.jar",
+          "size": 55447,
+          "sha512": "95244b22459bfddf4ef61f7f7889836151451d8bd837e68271575e033c066588cb05d075b241a0baf5f0cfbf66ba818cbe00243f9173d101e931eae7d106ce84",
+          "sha256": "f9866fbe956ccc043e0060c3686f0edbe60529178e8a4beef176d59757aa6624",
+          "sha1": "bdbb93125472f4c884a48535428252c2fb3465ca",
+          "md5": "94e3ee42bb5c40ae06edffed8c3f19bb"
+        }
+      ]
+    }
+  ]
+}

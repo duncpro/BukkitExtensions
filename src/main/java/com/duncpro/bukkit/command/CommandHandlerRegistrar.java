@@ -3,7 +3,6 @@ package com.duncpro.bukkit.command;
 import com.duncpro.bukkit.command.annotation.CommandHandler;
 import com.duncpro.bukkit.command.context.CommandContextElementType;
 import com.duncpro.bukkit.command.datatypes.CommandParameterDataType;
-import com.duncpro.bukkit.misc.ThrowingRunnable;
 import com.google.inject.Key;
 import com.google.inject.Provider;
 import com.google.inject.TypeLiteral;
