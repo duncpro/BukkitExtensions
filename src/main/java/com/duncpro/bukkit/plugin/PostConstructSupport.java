@@ -35,6 +35,7 @@ class PostConstructSupport implements TypeListener {
     public <I> void hear(TypeLiteral<I> type, TypeEncounter<I> encounter) {
         for (final var method : type.getRawType().getMethods()) {
             if (!method.isAnnotationPresent(PostConstruct.class)) return;
+            method.trySetAccessible();
             encounter.register((InjectionListener<I>) injectee -> {
                 invokeHandler(method, injectee);
             });
