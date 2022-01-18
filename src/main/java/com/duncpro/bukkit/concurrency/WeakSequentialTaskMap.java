@@ -12,7 +12,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * This class provides a mechanism for running a sequence of tasks on some {@link Executor}, where each sequence
- * is unique on some key of type {@link K}. This is a weak map, meaning, once no references to the key remain,
+ * is unique on some key of type {@link K}. This is a weak map, meaning, once no references to the key remains,
  * the key will be removed from the map. A reference to the key is stored with each task, therefore, while a task
  * is in the queue, the sequence will never be purged from the map.
  */

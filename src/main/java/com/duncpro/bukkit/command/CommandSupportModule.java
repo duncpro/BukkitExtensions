@@ -1,7 +1,6 @@
 package com.duncpro.bukkit.command;
 
 import com.duncpro.bukkit.command.context.CommandContextElementType;
-import com.duncpro.bukkit.command.context.CuboidRegionSelectionContextElementType;
 import com.duncpro.bukkit.command.context.PlayerCommandContextElementType;
 import com.duncpro.bukkit.command.context.SenderCommandContextElementType;
 import com.duncpro.bukkit.command.datatypes.*;
@@ -20,7 +19,6 @@ public class CommandSupportModule extends AbstractModule {
         parameterTypes.addBinding().to(DurationCommandParameterDataType.class);
 
         final var contextTypes = Multibinder.newSetBinder(binder(), CommandContextElementType.class);
-        contextTypes.addBinding().to(CuboidRegionSelectionContextElementType.class);
         contextTypes.addBinding().to(SenderCommandContextElementType.class);
         contextTypes.addBinding().to(PlayerCommandContextElementType.class);
     }

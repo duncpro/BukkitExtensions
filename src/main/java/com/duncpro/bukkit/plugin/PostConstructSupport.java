@@ -1,6 +1,5 @@
 package com.duncpro.bukkit.plugin;
 
-import com.duncpro.bukkit.misc.ThrowingRunnable;
 import com.google.inject.TypeLiteral;
 import com.google.inject.spi.InjectionListener;
 import com.google.inject.spi.TypeEncounter;
@@ -34,12 +33,11 @@ class PostConstructSupport implements TypeListener {
 
     @Override
     public <I> void hear(TypeLiteral<I> type, TypeEncounter<I> encounter) {
-        encounter.register((InjectionListener<I>) injectee -> {
-            for (final var method : injectee.getClass().getMethods()) {
-                if (method.isAnnotationPresent(PostConstruct.class)) {
-                    invokeHandler(method, injectee);
-                }
-            }
-        });
+        for (final var method : type.getRawType().getMethods()) {
+            if (!method.isAnnotationPresent(PostConstruct.class)) return;
+            encounter.register((InjectionListener<I>) injectee -> {
+                invokeHandler(method, injectee);
+            });
+        }
     }
 }
