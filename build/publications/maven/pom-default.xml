@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.duncpro</groupId>
   <artifactId>BukkitExtensions</artifactId>
-  <version>1.1-SNAPSHOT-1</version>
+  <version>1.1-SNAPSHOT-2</version>
   <dependencies>
     <dependency>
       <groupId>commons-cli</groupId>

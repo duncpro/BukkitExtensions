@@ -14,7 +14,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Stack;
 import java.util.concurrent.Executor;
 
@@ -52,35 +51,42 @@ public class BukkitPluginSupportModule<P extends JavaPlugin> extends AbstractMod
         install(new CommandSupportModule());
     }
 
+    public void runPreDestroyHooks() {
+        while (!preDestroyHooks.empty()) {
+            preDestroyHooks.pop().run();
+        }
+    }
+
+
     @Provides
     @BukkitThreadPool
-    public Executor provideBukkitAsyncSchedulerExecutor() {
+    Executor provideBukkitAsyncSchedulerExecutor() {
         // Bukkit is thread safe for this method
         return (task) -> plugin.getServer().getScheduler().runTaskAsynchronously(plugin, task);
     }
 
     @Provides
     @NextTickSync
-    public Executor provideMinecraftGameThreadExecutor() {
+    Executor provideMinecraftGameThreadExecutor() {
         // Bukkit is thread safe for this method
         return (task) -> plugin.getServer().getScheduler().runTask(plugin, task);
     }
 
     @Provides
     @PluginDataFolder
-    public File providePluginDataFolder() {
+    File providePluginDataFolder() {
         return plugin.getDataFolder();
     }
 
     @Provides
     @PluginConfig
-    public File providePluginConfigFile(@PluginDataFolder File dataFolder) {
+    File providePluginConfigFile(@PluginDataFolder File dataFolder) {
         return new File(dataFolder, "config.yml");
     }
 
     @Provides
     @PluginConfig
-    public YamlConfiguration providePluginConfig(PluginConfigService pluginConfigService) {
+    YamlConfiguration providePluginConfig(PluginConfigService pluginConfigService) {
         return pluginConfigService.loadConfiguration();
     }
 }
