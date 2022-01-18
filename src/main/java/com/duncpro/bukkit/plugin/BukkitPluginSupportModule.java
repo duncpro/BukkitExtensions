@@ -20,11 +20,11 @@ import java.util.concurrent.Executor;
 
 import static java.util.Objects.requireNonNull;
 
-class BukkitPluginSupportModule<P extends JavaPlugin> extends AbstractModule {
+public class BukkitPluginSupportModule<P extends JavaPlugin> extends AbstractModule {
     final Stack<Runnable> preDestroyHooks = new Stack<>();
     private final P plugin;
 
-    BukkitPluginSupportModule(P plugin) {
+    public BukkitPluginSupportModule(P plugin) {
         this.plugin = requireNonNull(plugin);
     }
 
