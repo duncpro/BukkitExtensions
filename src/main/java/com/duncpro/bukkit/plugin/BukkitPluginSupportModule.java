@@ -14,7 +14,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.util.Stack;
 import java.util.concurrent.Executor;
 
 import static java.util.Objects.requireNonNull;
