@@ -35,7 +35,7 @@ class PreDestroySupport implements TypeListener {
     public <I> void hear(TypeLiteral<I> type, TypeEncounter<I> encounter) {
         final var lifecycleHooks = encounter.getProvider(LifecycleHooks.class);
         for (final var method : type.getRawType().getDeclaredMethods()) {
-            if (!method.isAnnotationPresent(PreDestroy.class)) return;
+            if (!method.isAnnotationPresent(PreDestroy.class)) continue;
             method.trySetAccessible();
             encounter.register((InjectionListener<I>) injectee ->
                     lifecycleHooks.get().registerPreDestroyHook(() -> invokeHandler(method, injectee)));
