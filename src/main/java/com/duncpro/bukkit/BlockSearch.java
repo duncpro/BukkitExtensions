@@ -4,14 +4,17 @@ import com.duncpro.bukkit.concurrency.BukkitThreadPool;
 import com.duncpro.bukkit.concurrency.NextTickSync;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.util.Vector;
 
 import javax.annotation.concurrent.ThreadSafe;
 import javax.inject.Inject;
 
+import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -29,19 +32,22 @@ public class BlockSearch {
         this.asyncExecutor = requireNonNull(asyncExecutor);
     }
 
-    public CompletableFuture<Optional<Block>> getHighestNonAir(World world, int x, int z) {
+    public CompletableFuture<BlockSearchResult> getHighestNonAir(World world, int x, int z) {
         final var maxY = supplyAsync(world::getMaxHeight, minecraftThread);
         final var minY = supplyAsync(world::getMinHeight, minecraftThread);
 
-        final Function<Vector, Supplier<Block>> blockAccessor = pos ->
-                () -> world.getBlockAt(pos.getBlockX(), pos.getBlockY(), pos.getBlockZ());
+        final BiFunction<Vector, Boolean, Supplier<BlockSearchResult>> blockAccessor = (pos, isLast) -> () -> {
+            final var block = world.getBlockAt(pos.getBlockX(), pos.getBlockY(), pos.getBlockZ());
+            return new BlockSearchResult(ZonedDateTime.now(), block, block.getBlockData(), isLast);
+        };
 
         return supplyAsync(() -> {
             for (int y = maxY.join(); y >= minY.join(); y--) {
-                final var block = supplyAsync(blockAccessor.apply(new Vector(x, y, z)), minecraftThread).join();
-                if (!block.isEmpty() || block.isLiquid()) return Optional.of(block);
+                final var block = supplyAsync(blockAccessor.apply(new Vector(x, y, z), y == minY.join()), minecraftThread).join();
+                final var material = block.getBlockData().map(BlockData::getMaterial).orElseThrow();
+                if (!Materials.AIR.contains(material) || block.isLast()) return block;
             }
-            return Optional.empty();
+            throw new IllegalStateException();
         }, asyncExecutor);
     }
 }
