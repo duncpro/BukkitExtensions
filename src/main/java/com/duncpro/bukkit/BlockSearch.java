@@ -1,6 +1,7 @@
 package com.duncpro.bukkit;
 
 import com.duncpro.bukkit.concurrency.BukkitThreadPool;
+import com.duncpro.bukkit.concurrency.BukkitThreadSafe;
 import com.duncpro.bukkit.concurrency.BukkitThreadUnsafe;
 import com.duncpro.bukkit.concurrency.NextTickSync;
 import org.bukkit.World;
@@ -30,6 +31,10 @@ public class BlockSearch {
     public BlockSearch(@NextTickSync Executor minecraftThread, @BukkitThreadPool Executor asyncExecutor) {
         this.minecraftThread = requireNonNull(minecraftThread);
         this.asyncExecutor = requireNonNull(asyncExecutor);
+    }
+
+    public BlockSearchResult getHighestNonAirOffThread(World world, int x, int z) {
+        return supplyAsync(() -> getHighestNonAir(world, x, z), minecraftThread).join().join();
     }
 
     @BukkitThreadUnsafe
