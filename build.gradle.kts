@@ -3,7 +3,7 @@ plugins {
     `maven-publish`
 }
 
-version = "1.1-SNAPSHOT-10"
+version = "1.1-SNAPSHOT-11"
 group = "com.duncpro"
 
 repositories {

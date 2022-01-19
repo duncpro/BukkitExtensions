@@ -27,11 +27,11 @@
         {
           "name": "BukkitExtensions-1.1-SNAPSHOT-10.jar",
           "url": "BukkitExtensions-1.1-SNAPSHOT-10.jar",
-          "size": 57406,
-          "sha512": "59d35440cd40c565aa67e8168eff373d1918083328ebcec46dbd2a8ff72ddf007db8fbba9e6f2a4ff16efaf7c4d11fd205ec34db8e901dc0dadd95d96179e5b1",
-          "sha256": "d0412b2f5fb090031ff384676bf568294c3ba641d645dac05260f6eb19180b78",
-          "sha1": "fad0e89d9b9516580ba8db562800ae855bb6a0b3",
-          "md5": "a49cff9284c4a55169a8ae5af1b653dc"
+          "size": 59306,
+          "sha512": "03f03aef5cca0291950ba6fcd98719c8d3b163b10dbf1e6196a253bdb1afaa01b7fa7bbec11eaa14a7a896f627cd73f51172ecd837335d25f8e8ff4d0c5e72c9",
+          "sha256": "e8da27c90029fb6712a9a54e9a1151a2cd1a35a3eec8d885d3515a0c4764c052",
+          "sha1": "a9b769fa426dea422c99886ada17f6275d7a39e3",
+          "md5": "db80e063e0e4f069db869034cf0f91f0"
         }
       ]
     },
@@ -71,11 +71,11 @@
         {
           "name": "BukkitExtensions-1.1-SNAPSHOT-10.jar",
           "url": "BukkitExtensions-1.1-SNAPSHOT-10.jar",
-          "size": 57406,
-          "sha512": "59d35440cd40c565aa67e8168eff373d1918083328ebcec46dbd2a8ff72ddf007db8fbba9e6f2a4ff16efaf7c4d11fd205ec34db8e901dc0dadd95d96179e5b1",
-          "sha256": "d0412b2f5fb090031ff384676bf568294c3ba641d645dac05260f6eb19180b78",
-          "sha1": "fad0e89d9b9516580ba8db562800ae855bb6a0b3",
-          "md5": "a49cff9284c4a55169a8ae5af1b653dc"
+          "size": 59306,
+          "sha512": "03f03aef5cca0291950ba6fcd98719c8d3b163b10dbf1e6196a253bdb1afaa01b7fa7bbec11eaa14a7a896f627cd73f51172ecd837335d25f8e8ff4d0c5e72c9",
+          "sha256": "e8da27c90029fb6712a9a54e9a1151a2cd1a35a3eec8d885d3515a0c4764c052",
+          "sha1": "a9b769fa426dea422c99886ada17f6275d7a39e3",
+          "md5": "db80e063e0e4f069db869034cf0f91f0"
         }
       ]
     }
