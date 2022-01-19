@@ -43,7 +43,7 @@ public class BlockSearchResult {
         return isLast;
     }
 
-    public Vector getPosition() {
-        return position;
+    public Optional<Vector> getPosition() {
+        return Optional.ofNullable(position);
     }
 }

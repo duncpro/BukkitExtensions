@@ -3,21 +3,22 @@
   <groupId>com.duncpro</groupId>
   <artifactId>BukkitExtensions</artifactId>
   <versioning>
-    <latest>1.1-SNAPSHOT-13</latest>
-    <release>1.1-SNAPSHOT-13</release>
+    <latest>1.1-SNAPSHOT-14</latest>
+    <release>1.1-SNAPSHOT-14</release>
     <versions>
       <version>1.0</version>
       <version>1.1-SNAPSHOT-1</version>
       <version>1.1-SNAPSHOT-10</version>
       <version>1.1-SNAPSHOT-11</version>
       <version>1.1-SNAPSHOT-12</version>
+      <version>1.1-SNAPSHOT-13</version>
       <version>1.1-SNAPSHOT-2</version>
       <version>1.1-SNAPSHOT-3</version>
       <version>1.1-SNAPSHOT-5</version>
       <version>1.1-SNAPSHOT-7</version>
       <version>1.1-SNAPSHOT-8</version>
-      <version>1.1-SNAPSHOT-13</version>
+      <version>1.1-SNAPSHOT-14</version>
     </versions>
-    <lastUpdated>20220119055400</lastUpdated>
+    <lastUpdated>20220119062623</lastUpdated>
   </versioning>
 </metadata>
