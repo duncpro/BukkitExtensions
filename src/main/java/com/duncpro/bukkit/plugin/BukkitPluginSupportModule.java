@@ -60,11 +60,7 @@ public class BukkitPluginSupportModule<P extends JavaPlugin> extends AbstractMod
     Executor provideMinecraftGameThreadExecutor() {
         // Bukkit is thread safe for this method
         return (task) -> {
-            if (plugin.getServer().isPrimaryThread()) {
-                task.run();
-            } else {
-                plugin.getServer().getScheduler().runTask(plugin, task);
-            }
+            plugin.getServer().getScheduler().runTask(plugin, task);
         };
     }
 

@@ -1,6 +1,7 @@
 package com.duncpro.bukkit;
 
 import com.duncpro.bukkit.concurrency.BukkitThreadPool;
+import com.duncpro.bukkit.concurrency.BukkitThreadUnsafe;
 import com.duncpro.bukkit.concurrency.NextTickSync;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -21,7 +22,6 @@ import java.util.function.Supplier;
 import static java.util.Objects.requireNonNull;
 import static java.util.concurrent.CompletableFuture.supplyAsync;
 
-@ThreadSafe
 public class BlockSearch {
     private Executor minecraftThread;
     private Executor asyncExecutor;
@@ -32,9 +32,10 @@ public class BlockSearch {
         this.asyncExecutor = requireNonNull(asyncExecutor);
     }
 
+    @BukkitThreadUnsafe
     public CompletableFuture<BlockSearchResult> getHighestNonAir(World world, int x, int z) {
-        final var maxY = supplyAsync(world::getMaxHeight, minecraftThread);
-        final var minY = supplyAsync(world::getMinHeight, minecraftThread);
+        final var maxY = world.getMaxHeight();
+        final var minY = world.getMinHeight();
 
         final BiFunction<Vector, Boolean, Supplier<BlockSearchResult>> blockAccessor = (pos, isLast) -> () -> {
             final var block = world.getBlockAt(pos.getBlockX(), pos.getBlockY(), pos.getBlockZ());
@@ -42,8 +43,8 @@ public class BlockSearch {
         };
 
         return supplyAsync(() -> {
-            for (int y = maxY.join(); y >= minY.join(); y--) {
-                final var block = supplyAsync(blockAccessor.apply(new Vector(x, y, z), y == minY.join()), minecraftThread).join();
+            for (int y = maxY; y >= minY; y--) {
+                final var block = supplyAsync(blockAccessor.apply(new Vector(x, y, z), y == minY), minecraftThread).join();
                 final var material = block.getBlockData().map(BlockData::getMaterial).orElseThrow();
                 if (!Materials.AIR.contains(material) || block.isLast()) return block;
             }
