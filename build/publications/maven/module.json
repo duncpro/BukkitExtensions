@@ -3,7 +3,7 @@
   "component": {
     "group": "com.duncpro",
     "module": "BukkitExtensions",
-    "version": "1.1-SNAPSHOT-14",
+    "version": "1.1-SNAPSHOT-15",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -19,19 +19,19 @@
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.dependency.bundling": "external",
-        "org.gradle.jvm.version": 16,
+        "org.gradle.jvm.version": 17,
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-api"
       },
       "files": [
         {
-          "name": "BukkitExtensions-1.1-SNAPSHOT-14.jar",
-          "url": "BukkitExtensions-1.1-SNAPSHOT-14.jar",
-          "size": 60977,
-          "sha512": "098787ef4d42b5c1ec582d5d26a5a423e3f05849501deca7e7cb0f3f3455cb1c6e21dc82793c89af3bd04316eba1bfe84665eed7c2d456de7811ee7fecf2cb32",
-          "sha256": "73f8f9b8eb1f0ff401429c389918b9cd918b720c1100d1af194384623729bd13",
-          "sha1": "8b434b49e9bba0bb16c4f44915c0f366115c3433",
-          "md5": "ffe9d9fbe89ea4b250126d677c54fb56"
+          "name": "BukkitExtensions-1.1-SNAPSHOT-15.jar",
+          "url": "BukkitExtensions-1.1-SNAPSHOT-15.jar",
+          "size": 60993,
+          "sha512": "e618bb04e726e23da5f0c8117d68523a77b1f4544166ef17268867fe745f8a28006a1dc77e2909443fc7861efa40e98ae54c95448ca7934dfc78e2e960756976",
+          "sha256": "6e01cdd6fb4589b05b788c0c73e0e925f09c0a8a379aba0b40dd09f862a31c09",
+          "sha1": "3e871f9599fc698cc00e03cd7684fce437d8b12e",
+          "md5": "e7e4c70b797e7da501fb2b430af51d89"
         }
       ]
     },
@@ -40,7 +40,7 @@
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.dependency.bundling": "external",
-        "org.gradle.jvm.version": 16,
+        "org.gradle.jvm.version": 17,
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime"
       },
@@ -69,13 +69,13 @@
       ],
       "files": [
         {
-          "name": "BukkitExtensions-1.1-SNAPSHOT-14.jar",
-          "url": "BukkitExtensions-1.1-SNAPSHOT-14.jar",
-          "size": 60977,
-          "sha512": "098787ef4d42b5c1ec582d5d26a5a423e3f05849501deca7e7cb0f3f3455cb1c6e21dc82793c89af3bd04316eba1bfe84665eed7c2d456de7811ee7fecf2cb32",
-          "sha256": "73f8f9b8eb1f0ff401429c389918b9cd918b720c1100d1af194384623729bd13",
-          "sha1": "8b434b49e9bba0bb16c4f44915c0f366115c3433",
-          "md5": "ffe9d9fbe89ea4b250126d677c54fb56"
+          "name": "BukkitExtensions-1.1-SNAPSHOT-15.jar",
+          "url": "BukkitExtensions-1.1-SNAPSHOT-15.jar",
+          "size": 60993,
+          "sha512": "e618bb04e726e23da5f0c8117d68523a77b1f4544166ef17268867fe745f8a28006a1dc77e2909443fc7861efa40e98ae54c95448ca7934dfc78e2e960756976",
+          "sha256": "6e01cdd6fb4589b05b788c0c73e0e925f09c0a8a379aba0b40dd09f862a31c09",
+          "sha1": "3e871f9599fc698cc00e03cd7684fce437d8b12e",
+          "md5": "e7e4c70b797e7da501fb2b430af51d89"
         }
       ]
     }
