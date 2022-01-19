@@ -1,7 +1,9 @@
 package com.duncpro.bukkit;
 
+import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.util.Vector;
 
 import javax.swing.text.html.Option;
 import java.time.ZonedDateTime;
@@ -14,12 +16,15 @@ public class BlockSearchResult {
     private final Block block;
     private final BlockData blockData;
     private final boolean isLast;
+    private final Vector position;
 
+    // Must be called on Minecraft thread
     BlockSearchResult(ZonedDateTime observedAt, Block block, BlockData blockData, boolean isLast) {
         this.observedAt = requireNonNull(observedAt);
         this.block = block;
         this.blockData = blockData;
         this.isLast = isLast;
+        this.position = getBlock().map(Block::getLocation).map(Location::toVector).orElse(null);
     }
 
     public ZonedDateTime getObservedAt() {
@@ -36,5 +41,9 @@ public class BlockSearchResult {
 
     public boolean isLast() {
         return isLast;
+    }
+
+    public Vector getPosition() {
+        return position;
     }
 }
