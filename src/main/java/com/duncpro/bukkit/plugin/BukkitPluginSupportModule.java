@@ -27,8 +27,6 @@ public class BukkitPluginSupportModule<P extends JavaPlugin> extends AbstractMod
 
     @Override
     public void configure() {
-        binder().requireExplicitBindings();
-
         bind(Plugin.class).toInstance(plugin);
         bind(JavaPlugin.class).toInstance(plugin);
 
