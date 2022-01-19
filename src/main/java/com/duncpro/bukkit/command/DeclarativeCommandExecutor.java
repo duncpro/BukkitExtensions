@@ -53,6 +53,8 @@ public class DeclarativeCommandExecutor<T extends Runnable> implements CommandEx
         final var options = new Options();
 
         for (final var field : handlerClass.getDeclaredFields()) {
+            field.trySetAccessible();
+
             if (field.isAnnotationPresent(Flag.class)) {
                 final var annotation = field.getAnnotation(Flag.class);
 
