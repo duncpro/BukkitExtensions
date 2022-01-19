@@ -2,7 +2,11 @@ package com.duncpro.bukkit;
 
 import org.bukkit.util.Vector;
 
-import static java.util.Objects.requireNonNull;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import static java.lang.Math.pow;
+
 
 public class Chunks {
     public static final int CHUNK_HORIZONTAL_AXIS_LENGTH = 16;
@@ -14,5 +18,10 @@ public class Chunks {
         var z = positionInWorldBlocks.getZ() % CHUNK_HORIZONTAL_AXIS_LENGTH;
         if (z < 0) z = (z + CHUNK_HORIZONTAL_AXIS_LENGTH);
         return new Vector(x, y, z);
+    }
+
+    public static Stream<Vector> streamCrossSectionAtY(int y) {
+        return IntStream.range(0, (int) pow(CHUNK_HORIZONTAL_AXIS_LENGTH, 2))
+                .mapToObj(i -> new Vector(i / CHUNK_HORIZONTAL_AXIS_LENGTH, y, i % CHUNK_HORIZONTAL_AXIS_LENGTH));
     }
 }
