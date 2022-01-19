@@ -29,7 +29,7 @@ public class BlockSearch {
         this.asyncExecutor = requireNonNull(asyncExecutor);
     }
 
-    public CompletableFuture<Optional<Block>> getHighestImpassableBlock(World world, int x, int z) {
+    public CompletableFuture<Optional<Block>> getHighestNonAir(World world, int x, int z) {
         final var maxY = supplyAsync(world::getMaxHeight, minecraftThread);
         final var minY = supplyAsync(world::getMinHeight, minecraftThread);
 
