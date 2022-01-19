@@ -33,7 +33,7 @@ class PostConstructSupport implements TypeListener {
 
     @Override
     public <I> void hear(TypeLiteral<I> type, TypeEncounter<I> encounter) {
-        for (final var method : type.getRawType().getMethods()) {
+        for (final var method : type.getRawType().getDeclaredMethods()) {
             if (!method.isAnnotationPresent(PostConstruct.class)) return;
             method.trySetAccessible();
             encounter.register((InjectionListener<I>) injectee -> {
