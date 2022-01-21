@@ -3,7 +3,7 @@
   "component": {
     "group": "com.duncpro",
     "module": "BukkitExtensions",
-    "version": "1.1-SNAPSHOT-27",
+    "version": "1.1-SNAPSHOT-28",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -27,13 +27,13 @@
       },
       "files": [
         {
-          "name": "BukkitExtensions-1.1-SNAPSHOT-27.jar",
-          "url": "BukkitExtensions-1.1-SNAPSHOT-27.jar",
-          "size": 58736,
-          "sha512": "a05ed5519a89e24e1b47dc681bdca621c29ff08c9928ee0fb3add9918b3ce4a21e8e1a63174f8564cb1d69043c9f4d97940e7aa2ba2c6a837d8f743886b50c54",
-          "sha256": "cf1bef814dc766f6cb067d4d4f849d36fb7dd4f64c95a2a8b92bb38cfa132bc3",
-          "sha1": "a1bbc95917a901949655a9751ad010a997b8c6aa",
-          "md5": "0a4950c58e8931fb8c1685c2fae8739b"
+          "name": "BukkitExtensions-1.1-SNAPSHOT-28.jar",
+          "url": "BukkitExtensions-1.1-SNAPSHOT-28.jar",
+          "size": 62161,
+          "sha512": "51e3306d282e6cd71d20835dae03cd7566d47813724ee636386cbf1c93bd70c0f22e17a7aa1e061505d53c43d0d40d7eb8bb24e5c6fc28968f17605cc94441b6",
+          "sha256": "ad81444158581dff1c461ed7407051dc36385a904a0d0bfa8d6edc3ff2caa51e",
+          "sha1": "19fe0c00bc3b9d021d7050271c77dfb363a4c1cf",
+          "md5": "c9c0dd9064ab9cc38713e1183b405400"
         }
       ]
     },
@@ -49,6 +49,13 @@
         "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-jdk8",
+          "version": {
+            "requires": "1.6.0"
+          }
+        },
         {
           "group": "org.jetbrains.kotlinx",
           "module": "kotlinx-coroutines-core",
@@ -94,13 +101,13 @@
       ],
       "files": [
         {
-          "name": "BukkitExtensions-1.1-SNAPSHOT-27.jar",
-          "url": "BukkitExtensions-1.1-SNAPSHOT-27.jar",
-          "size": 58736,
-          "sha512": "a05ed5519a89e24e1b47dc681bdca621c29ff08c9928ee0fb3add9918b3ce4a21e8e1a63174f8564cb1d69043c9f4d97940e7aa2ba2c6a837d8f743886b50c54",
-          "sha256": "cf1bef814dc766f6cb067d4d4f849d36fb7dd4f64c95a2a8b92bb38cfa132bc3",
-          "sha1": "a1bbc95917a901949655a9751ad010a997b8c6aa",
-          "md5": "0a4950c58e8931fb8c1685c2fae8739b"
+          "name": "BukkitExtensions-1.1-SNAPSHOT-28.jar",
+          "url": "BukkitExtensions-1.1-SNAPSHOT-28.jar",
+          "size": 62161,
+          "sha512": "51e3306d282e6cd71d20835dae03cd7566d47813724ee636386cbf1c93bd70c0f22e17a7aa1e061505d53c43d0d40d7eb8bb24e5c6fc28968f17605cc94441b6",
+          "sha256": "ad81444158581dff1c461ed7407051dc36385a904a0d0bfa8d6edc3ff2caa51e",
+          "sha1": "19fe0c00bc3b9d021d7050271c77dfb363a4c1cf",
+          "md5": "c9c0dd9064ab9cc38713e1183b405400"
         }
       ]
     }

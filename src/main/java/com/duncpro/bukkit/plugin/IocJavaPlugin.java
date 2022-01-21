@@ -3,6 +3,7 @@ package com.duncpro.bukkit.plugin;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.IllegalPluginAccessException;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -20,7 +21,6 @@ public abstract class IocJavaPlugin extends JavaPlugin {
         modules.addAll(createModules());
         Guice.createInjector(modules).injectMembers(this);
     }
-
 
     @Inject
     private LifecycleHooks lifecycleHooks;
