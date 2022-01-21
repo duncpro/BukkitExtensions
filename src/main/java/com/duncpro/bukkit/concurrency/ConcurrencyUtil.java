@@ -7,7 +7,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ConcurrencyUtil {
-    @Deprecated
     public static <K> BiFunction<K, CompletableFuture<Void>, CompletableFuture<Void>> chain(Supplier<CompletableFuture<Void>> next) {
         return (key, prev) -> {
             if (prev == null) return next.get();
@@ -15,7 +14,6 @@ public class ConcurrencyUtil {
         };
     }
 
-    @Deprecated
     public static <T> BiConsumer<T, Throwable> logErrors(Logger logger) {
         return ($, e) -> {
             if (e == null) return;
@@ -23,7 +21,6 @@ public class ConcurrencyUtil {
         };
     }
 
-    @Deprecated
     public static <T> BiConsumer<T, Throwable> log(Logger logger, Function<T, String> infoMessage) {
         return (s, e) -> {
             if (e == null) {
@@ -34,7 +31,6 @@ public class ConcurrencyUtil {
         };
     }
 
-    @Deprecated
     public static <T> BiConsumer<T, Throwable> log(Logger logger, Level level, Function<T, String> infoMessage) {
         return (s, e) -> {
             if (e == null) {
@@ -45,7 +41,6 @@ public class ConcurrencyUtil {
         };
     }
 
-    @Deprecated
     public static <T> BiConsumer<T, Throwable> constant(Runnable action) {
         return ($, $$) -> action.run();
     }
@@ -55,5 +50,12 @@ public class ConcurrencyUtil {
             throws CompletionException {
         if (e.getCause().getClass() == causeType) return (T) e.getCause();
         throw e;
+    }
+
+    public static Function<Boolean, CompletableFuture<Void>> ifTrue(Supplier<CompletableFuture<?>> action) {
+        return (isTrue) -> {
+            if (isTrue) return action.get().thenApply($ -> null);
+            return CompletableFuture.completedFuture(null);
+        };
     }
 }
