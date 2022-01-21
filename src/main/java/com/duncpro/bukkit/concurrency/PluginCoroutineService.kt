@@ -5,6 +5,8 @@ import com.duncpro.bukkit.plugin.PreDestroy
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
+import org.bukkit.plugin.java.JavaPlugin
+import java.util.concurrent.CompletableFuture
 
 class PluginCoroutineService {
     lateinit var pluginCoroutineScope: CoroutineScope

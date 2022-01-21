@@ -3,7 +3,7 @@
   "component": {
     "group": "com.duncpro",
     "module": "BukkitExtensions",
-    "version": "1.1-SNAPSHOT-26",
+    "version": "1.1-SNAPSHOT-27",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -19,19 +19,21 @@
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
         "org.gradle.jvm.version": 17,
         "org.gradle.libraryelements": "jar",
-        "org.gradle.usage": "java-api"
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "files": [
         {
-          "name": "BukkitExtensions-1.1-SNAPSHOT-26.jar",
-          "url": "BukkitExtensions-1.1-SNAPSHOT-26.jar",
-          "size": 57212,
-          "sha512": "62c54d470b0c9d8f68053d1b4709b82eb3a427312dd01d49f386ffe3edf353aabf70b01df1f6f191f7b8b26ca1c29a36f128d73aecc16796f98eae8b6fce9377",
-          "sha256": "7bfa9b89c6ff5350335047da3b639f4db0048888dbe40b897416e61e8e63332e",
-          "sha1": "18b4b02aea7259fe89a2828e1eba774f8f46fd25",
-          "md5": "7a2b5b99b6a9e5058b56710f9dfd58c6"
+          "name": "BukkitExtensions-1.1-SNAPSHOT-27.jar",
+          "url": "BukkitExtensions-1.1-SNAPSHOT-27.jar",
+          "size": 58736,
+          "sha512": "a05ed5519a89e24e1b47dc681bdca621c29ff08c9928ee0fb3add9918b3ce4a21e8e1a63174f8564cb1d69043c9f4d97940e7aa2ba2c6a837d8f743886b50c54",
+          "sha256": "cf1bef814dc766f6cb067d4d4f849d36fb7dd4f64c95a2a8b92bb38cfa132bc3",
+          "sha1": "a1bbc95917a901949655a9751ad010a997b8c6aa",
+          "md5": "0a4950c58e8931fb8c1685c2fae8739b"
         }
       ]
     },
@@ -40,11 +42,20 @@
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
         "org.gradle.jvm.version": 17,
         "org.gradle.libraryelements": "jar",
-        "org.gradle.usage": "java-runtime"
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.6.0"
+          }
+        },
         {
           "group": "com.google.inject.extensions",
           "module": "guice-assistedinject",
@@ -72,17 +83,24 @@
           "version": {
             "requires": "5.0.1"
           }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.6.10"
+          }
         }
       ],
       "files": [
         {
-          "name": "BukkitExtensions-1.1-SNAPSHOT-26.jar",
-          "url": "BukkitExtensions-1.1-SNAPSHOT-26.jar",
-          "size": 57212,
-          "sha512": "62c54d470b0c9d8f68053d1b4709b82eb3a427312dd01d49f386ffe3edf353aabf70b01df1f6f191f7b8b26ca1c29a36f128d73aecc16796f98eae8b6fce9377",
-          "sha256": "7bfa9b89c6ff5350335047da3b639f4db0048888dbe40b897416e61e8e63332e",
-          "sha1": "18b4b02aea7259fe89a2828e1eba774f8f46fd25",
-          "md5": "7a2b5b99b6a9e5058b56710f9dfd58c6"
+          "name": "BukkitExtensions-1.1-SNAPSHOT-27.jar",
+          "url": "BukkitExtensions-1.1-SNAPSHOT-27.jar",
+          "size": 58736,
+          "sha512": "a05ed5519a89e24e1b47dc681bdca621c29ff08c9928ee0fb3add9918b3ce4a21e8e1a63174f8564cb1d69043c9f4d97940e7aa2ba2c6a837d8f743886b50c54",
+          "sha256": "cf1bef814dc766f6cb067d4d4f849d36fb7dd4f64c95a2a8b92bb38cfa132bc3",
+          "sha1": "a1bbc95917a901949655a9751ad010a997b8c6aa",
+          "md5": "0a4950c58e8931fb8c1685c2fae8739b"
         }
       ]
     }
