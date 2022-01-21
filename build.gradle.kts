@@ -3,7 +3,7 @@ plugins {
     `maven-publish`
 }
 
-version = "1.1-SNAPSHOT-25"
+version = "1.1-SNAPSHOT-26"
 group = "com.duncpro"
 
 repositories {
@@ -12,6 +12,7 @@ repositories {
 }
 
 dependencies {
+    implementation("com.google.inject.extensions:guice-assistedinject:5.0.1")
     implementation("commons-cli:commons-cli:1.5.0")
     implementation("org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT")
     implementation("com.google.inject:guice:5.0.1")
