@@ -4,7 +4,7 @@ plugins {
     kotlin("jvm") version "1.6.10"
 }
 
-version = "1.1-SNAPSHOT-30"
+version = "1.1-SNAPSHOT-31"
 group = "com.duncpro"
 
 repositories {
