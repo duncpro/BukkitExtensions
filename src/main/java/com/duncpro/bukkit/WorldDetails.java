@@ -5,7 +5,7 @@ import org.bukkit.World;
 
 import static java.util.Objects.requireNonNull;
 
-record WorldDetails (int minHeight, int maxHeight) {
+public record WorldDetails (int minHeight, int maxHeight) {
     @BukkitThreadUnsafe
     public static WorldDetails of(World world) {
         return new WorldDetails(world.getMinHeight(), world.getMaxHeight());
