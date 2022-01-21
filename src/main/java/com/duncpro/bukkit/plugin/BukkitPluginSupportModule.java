@@ -4,10 +4,12 @@ import com.duncpro.bukkit.command.CommandHandlerRegistrar;
 import com.duncpro.bukkit.command.CommandSupportModule;
 import com.duncpro.bukkit.concurrency.BukkitThreadPool;
 import com.duncpro.bukkit.concurrency.NextTickSync;
+import com.duncpro.bukkit.concurrency.PluginCoroutineService;
 import com.duncpro.bukkit.log.PluginLoggerGuiceTypeListener;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.matcher.Matchers;
+import kotlinx.coroutines.CoroutineScope;
 import org.bukkit.Server;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -46,6 +48,7 @@ public class BukkitPluginSupportModule<P extends JavaPlugin> extends AbstractMod
         bind(PluginConfigService.class).asEagerSingleton();
         install(new CommandSupportModule());
         bind(LifecycleHooks.class).asEagerSingleton();
+        bind(PluginCoroutineService.class).asEagerSingleton();
     }
 
     @Provides
@@ -78,5 +81,10 @@ public class BukkitPluginSupportModule<P extends JavaPlugin> extends AbstractMod
     @PluginConfig
     YamlConfiguration providePluginConfig(PluginConfigService pluginConfigService) {
         return pluginConfigService.loadConfiguration();
+    }
+
+    @Provides
+    CoroutineScope provideCoroutineScope(PluginCoroutineService coroutineService) {
+        return coroutineService.pluginCoroutineScope;
     }
 }
