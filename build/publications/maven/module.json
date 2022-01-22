@@ -3,7 +3,7 @@
   "component": {
     "group": "com.duncpro",
     "module": "BukkitExtensions",
-    "version": "1.1-SNAPSHOT-34",
+    "version": "1.1-SNAPSHOT-35",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -27,13 +27,13 @@
       },
       "files": [
         {
-          "name": "BukkitExtensions-1.1-SNAPSHOT-34.jar",
-          "url": "BukkitExtensions-1.1-SNAPSHOT-34.jar",
-          "size": 63923,
-          "sha512": "4b383ff9d2734669abcbf42ef24d83567031cad2f5c78a79975891aa3ff0122604d8e09f48eab9c7652bc7606b75a200fc7ec3d5c0242939d3476cd4c82b54c0",
-          "sha256": "ebf89c71f7f50c9ea99b8c2ccbc2ac8cdbde59bc122332d795bf472f9975c14e",
-          "sha1": "2536186d07a43b107500117636af9c023509507d",
-          "md5": "69c7a7f95a117783e87bd7264b5c99b6"
+          "name": "BukkitExtensions-1.1-SNAPSHOT-35.jar",
+          "url": "BukkitExtensions-1.1-SNAPSHOT-35.jar",
+          "size": 64470,
+          "sha512": "510f751e5601b5e82f62880ef56ee702b23e21dac24bbf9beb3608473ec49be342400880c48f525b7b7212173d0c02e1d7ab9a945ed6aa955f57dc12cd34bfeb",
+          "sha256": "e3e61d01e645ef8c777160485e0724526a632dc6ce99df715e121b5349b91789",
+          "sha1": "29fd8302edda7f5b8eac8adcf8ec6fa8ab74e5b3",
+          "md5": "3d1568cd5575b9cffb2f70bbba5b1cc8"
         }
       ]
     },
@@ -101,13 +101,13 @@
       ],
       "files": [
         {
-          "name": "BukkitExtensions-1.1-SNAPSHOT-34.jar",
-          "url": "BukkitExtensions-1.1-SNAPSHOT-34.jar",
-          "size": 63923,
-          "sha512": "4b383ff9d2734669abcbf42ef24d83567031cad2f5c78a79975891aa3ff0122604d8e09f48eab9c7652bc7606b75a200fc7ec3d5c0242939d3476cd4c82b54c0",
-          "sha256": "ebf89c71f7f50c9ea99b8c2ccbc2ac8cdbde59bc122332d795bf472f9975c14e",
-          "sha1": "2536186d07a43b107500117636af9c023509507d",
-          "md5": "69c7a7f95a117783e87bd7264b5c99b6"
+          "name": "BukkitExtensions-1.1-SNAPSHOT-35.jar",
+          "url": "BukkitExtensions-1.1-SNAPSHOT-35.jar",
+          "size": 64470,
+          "sha512": "510f751e5601b5e82f62880ef56ee702b23e21dac24bbf9beb3608473ec49be342400880c48f525b7b7212173d0c02e1d7ab9a945ed6aa955f57dc12cd34bfeb",
+          "sha256": "e3e61d01e645ef8c777160485e0724526a632dc6ce99df715e121b5349b91789",
+          "sha1": "29fd8302edda7f5b8eac8adcf8ec6fa8ab74e5b3",
+          "md5": "3d1568cd5575b9cffb2f70bbba5b1cc8"
         }
       ]
     }

@@ -2,18 +2,22 @@ package com.duncpro.bukkit.concurrency
 
 import com.duncpro.bukkit.plugin.PostConstruct
 import com.duncpro.bukkit.plugin.PreDestroy
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
+import kotlinx.coroutines.*
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.concurrent.CompletableFuture
+import java.util.concurrent.Executor
+import javax.inject.Inject
 
 class PluginCoroutineService {
     lateinit var pluginCoroutineScope: CoroutineScope
 
+    @Inject
+    @BukkitThreadPool
+    private lateinit var asyncExecutor: Executor
+
     @PostConstruct
     fun enterCoroutineScope() {
-        pluginCoroutineScope = MainScope()
+        pluginCoroutineScope = CoroutineScope(SupervisorJob() + asyncExecutor.asCoroutineDispatcher())
     }
 
     @PreDestroy

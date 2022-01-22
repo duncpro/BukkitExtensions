@@ -4,7 +4,7 @@ plugins {
     kotlin("jvm") version "1.6.10"
 }
 
-version = "1.1-SNAPSHOT-35"
+version = "1.1-SNAPSHOT-36"
 group = "com.duncpro"
 
 repositories {
@@ -15,7 +15,6 @@ repositories {
 dependencies {
     // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-jdk8
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.0")
-
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
     implementation("com.google.inject.extensions:guice-assistedinject:5.0.1")
     implementation("commons-cli:commons-cli:1.5.0")
