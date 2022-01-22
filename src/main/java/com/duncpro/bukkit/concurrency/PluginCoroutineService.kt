@@ -11,13 +11,9 @@ import javax.inject.Inject
 class PluginCoroutineService {
     lateinit var pluginCoroutineScope: CoroutineScope
 
-    @Inject
-    @BukkitThreadPool
-    private lateinit var asyncExecutor: Executor
-
     @PostConstruct
     fun enterCoroutineScope() {
-        pluginCoroutineScope = CoroutineScope(SupervisorJob() + asyncExecutor.asCoroutineDispatcher())
+        pluginCoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     }
 
     @PreDestroy
